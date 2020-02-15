@@ -1,8 +1,12 @@
+import json
 import os
 import random
 import requests
+import time
 
 from dotenv import load_dotenv, find_dotenv
+from tqdm import tqdm
+
 load_dotenv(find_dotenv())
 
 # https://developers.google.com/knowledge-graph/
@@ -31,15 +35,22 @@ foods = ['alfalfa sprouts', 'aloe vera', 'apples', 'apricots', 'artichokes',
 
 def search_knowledge_graph(query):
     base = 'https://kgsearch.googleapis.com/v1/entities:search'
-    url = f'{base}?query={query}&key={API_KEY}'
+    url = f'{base}?query={query}&key={API_KEY}&indent=True'
     r = requests.get(url)
     data = r.json()
     return data
 
+def print_item(item):
+    result = search_knowledge_graph(item)
+    print(f'query: {item}')
+    print(f'@context:\n{result["@context"]}')
+    print(f'@type:\n{result["@type"]}')
+    print(f'itemListElement:\n{result["itemListElement"]}')
+
 if __name__ == '__main__':
-    query = random.choice(foods)
-    veg = search_knowledge_graph(query)
-    print(f'query: {query}')
-    print(f'@context:\n{veg["@context"]}')
-    print(f'@type:\n{veg["@type"]}')
-    print(f'itemListElement:\n{veg["itemListElement"]}')
+    for item in tqdm(foods):
+        item = random.choice(foods)
+        result = search_knowledge_graph(item)
+        with open(f'data/{item.replace(" ", "_")}.json', 'w') as outfile:
+            json.dump(result, outfile)
+        time.sleep(1)

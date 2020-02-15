@@ -35,22 +35,26 @@ foods = ['alfalfa sprouts', 'aloe vera', 'apples', 'apricots', 'artichokes',
 
 def search_knowledge_graph(query):
     base = 'https://kgsearch.googleapis.com/v1/entities:search'
-    url = f'{base}?query={query}&key={API_KEY}&indent=True'
+    url = f'{base}?query={query}&key={API_KEY}'
     r = requests.get(url)
     data = r.json()
     return data
 
-def print_item(item):
-    result = search_knowledge_graph(item)
-    print(f'query: {item}')
-    print(f'@context:\n{result["@context"]}')
-    print(f'@type:\n{result["@type"]}')
-    print(f'itemListElement:\n{result["itemListElement"]}')
+def fetch_all_foods():
+    for food in tqdm(foods):
+        filename = f'data/{food.replace(" ", "_")}.json'
+        try:
+            with open(filename) as infile:
+                result = json.load(infile)
+        except:
+            result = search_knowledge_graph(food)
+            with open(filename, 'w') as outfile:
+                json.dump(result, outfile)
+            time.sleep(1)
 
 if __name__ == '__main__':
-    for item in tqdm(foods):
-        item = random.choice(foods)
-        result = search_knowledge_graph(item)
-        with open(f'data/{item.replace(" ", "_")}.json', 'w') as outfile:
-            json.dump(result, outfile)
-        time.sleep(1)
+    fetch_all_foods()
+
+##############################################################################
+# sandbox
+#item = random.choice(foods)

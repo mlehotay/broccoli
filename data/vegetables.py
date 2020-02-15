@@ -40,21 +40,43 @@ def search_knowledge_graph(query):
     data = r.json()
     return data
 
+def fetch_food(food):
+    filename = f'data/{food.replace(" ", "_")}.json'
+    try:
+        with open(filename) as infile:
+            result = json.load(infile)
+    except:
+        result = search_knowledge_graph(food)
+        with open(filename, 'w') as outfile:
+            json.dump(result, outfile)
+        time.sleep(1)
+    return result
+
 def fetch_all_foods():
     for food in tqdm(foods):
-        filename = f'data/{food.replace(" ", "_")}.json'
+        print_search_results(food, fetch_food(food))
+
+def print_search_results(query, response):
+    print(f'\nquery: {query}')
+    for r in response['itemListElement']:
+        score = r['resultScore']
+        name = r['result']['name']
+        id = r['result']['@id']
+        type = ' '.join(r['result']['@type'])
+
+        image = None
+        description = None
+        url = None
+        article = None
         try:
-            with open(filename) as infile:
-                result = json.load(infile)
+            image = r['result']['image']['contentUrl']
+            description = r['result']['description']
+            url = r['result']['detailedDescription']['url']
+            article = r['result']['detailedDescription']['articleBody']
         except:
-            result = search_knowledge_graph(food)
-            with open(filename, 'w') as outfile:
-                json.dump(result, outfile)
-            time.sleep(1)
+            pass
+
+        print(f"  {round(score)}\t{name}\t[{type}]")
 
 if __name__ == '__main__':
     fetch_all_foods()
-
-##############################################################################
-# sandbox
-#item = random.choice(foods)

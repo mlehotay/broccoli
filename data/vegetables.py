@@ -5,6 +5,7 @@ import requests
 import time
 
 from dotenv import load_dotenv, find_dotenv
+import pandas as pd
 from tqdm import tqdm
 
 load_dotenv(find_dotenv())
@@ -35,7 +36,7 @@ foods = ['alfalfa sprouts', 'aloe vera', 'apples', 'apricots', 'artichokes',
 
 def search_knowledge_graph(query):
     base = 'https://kgsearch.googleapis.com/v1/entities:search'
-    url = f'{base}?query={query}&key={API_KEY}'
+    url = f'{base}?query={query}&key={API_KEY}&type=Thing'
     r = requests.get(url)
     data = r.json()
     return data
@@ -49,34 +50,48 @@ def fetch_food(food):
         result = search_knowledge_graph(food)
         with open(filename, 'w') as outfile:
             json.dump(result, outfile)
-        time.sleep(1)
+        #time.sleep(1)
     return result
 
 def fetch_all_foods():
+    results = []
     for food in tqdm(foods):
-        print_search_results(food, fetch_food(food))
+        response = fetch_food(food)
 
-def print_search_results(query, response):
-    print(f'\nquery: {query}')
-    for r in response['itemListElement']:
-        score = r['resultScore']
-        name = r['result']['name']
-        id = r['result']['@id']
-        type = ' '.join(r['result']['@type'])
+        for r in response['itemListElement']:
+            dict = {
+                'score': r['resultScore'],
+                'name': r['result']['name'],
+                'id': r['result']['@id'],
+                'type': ' '.join(r['result']['@type']),
+                'query': food,
+                'image': None,
+                'description': None,
+                'url': None,
+                'article': None
+            }
 
-        image = None
-        description = None
-        url = None
-        article = None
-        try:
-            image = r['result']['image']['contentUrl']
-            description = r['result']['description']
-            url = r['result']['detailedDescription']['url']
-            article = r['result']['detailedDescription']['articleBody']
-        except:
-            pass
+            try:
+                dict['image'] = r['result']['image']['contentUrl']
+            except:
+                pass
+            try:
+                dict['description'] = r['result']['description']
+            except:
+                pass
+            try:
+                dict['url'] = r['result']['detailedDescription']['url']
+            except:
+                pass
+            try:
+                dict['article'] = r['result']['detailedDescription']['articleBody']
+            except:
+                pass
 
-        print(f"  {round(score)}\t{name}\t[{type}]")
+            # print(f"  {round(score)}\t{name}\t[{type}]")
+            results.append(dict)
+    return results
 
 if __name__ == '__main__':
-    fetch_all_foods()
+    df = pd.DataFrame(fetch_all_foods())
+    df.to_csv('data/vegetables.csv')

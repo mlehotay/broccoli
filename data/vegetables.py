@@ -11,6 +11,7 @@ from tqdm import tqdm
 load_dotenv(find_dotenv())
 
 # https://developers.google.com/knowledge-graph/
+# https://github.com/schemaorg/schemaorg/issues/458
 API_KEY = os.environ['KG_API_KEY']
 
 foods = ['alfalfa sprouts', 'aloe vera', 'apples', 'apricots', 'artichokes',
@@ -36,7 +37,7 @@ foods = ['alfalfa sprouts', 'aloe vera', 'apples', 'apricots', 'artichokes',
 
 def search_knowledge_graph(query):
     base = 'https://kgsearch.googleapis.com/v1/entities:search'
-    url = f'{base}?query={query}&key={API_KEY}&type=Thing'
+    url = f'{base}?query={query}&key={API_KEY}&types=Thing'
     r = requests.get(url)
     data = r.json()
     return data
@@ -60,38 +61,32 @@ def fetch_all_foods():
 
         for r in response['itemListElement']:
             dict = {
+                'query': food,
                 'score': r['resultScore'],
                 'name': r['result']['name'],
-                'id': r['result']['@id'],
                 'type': ' '.join(r['result']['@type']),
-                'query': food,
-                'image': None,
-                'description': None,
-                'url': None,
-                'article': None
+                'id': r['result']['@id']
             }
-
             try:
                 dict['image'] = r['result']['image']['contentUrl']
             except:
-                pass
+                dict['image'] = None
             try:
                 dict['description'] = r['result']['description']
             except:
-                pass
+                dict['description'] = None
             try:
                 dict['url'] = r['result']['detailedDescription']['url']
             except:
-                pass
+                dict['url'] = None
             try:
                 dict['article'] = r['result']['detailedDescription']['articleBody']
             except:
-                pass
+                dict['article'] = None
 
-            # print(f"  {round(score)}\t{name}\t[{type}]")
             results.append(dict)
     return results
 
 if __name__ == '__main__':
     df = pd.DataFrame(fetch_all_foods())
-    df.to_csv('data/vegetables.csv')
+    df.to_csv('data/vegetables.csv', index=False)

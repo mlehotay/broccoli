@@ -14,25 +14,25 @@ load_dotenv(find_dotenv())
 # https://github.com/schemaorg/schemaorg/issues/458
 API_KEY = os.environ['KG_API_KEY']
 
-foods = ['alfalfa sprouts', 'aloe vera', 'apples', 'apricots', 'artichokes',
-    'arugula', 'asparagus', 'avocados', 'bananas', 'bean sprouts', 'beets',
+foods = ['alfalfa sprouts', 'apples', 'apricots', 'artichokes', 'arugula',
+    'asparagus', 'avocados', 'bananas', 'bean sprouts', 'beets',
     'bell peppers', 'blackberries', 'blueberries', 'bok choy', 'broccoli',
-    'brussels sprouts', 'cabbage', 'cantaloupe', 'carrots', 'cauliflower',
-    'celery', 'cherries', 'chili peppers', 'clementines', 'coconuts',
-    'collard greens', 'coriander', 'corn', 'cranberries', 'cucumbers',
-    'currants', 'dandelion greens', 'dates', 'edamame', 'eggplant', 'endive',
-    'fennel', 'fiddlehead ferns', 'figs', 'garlic', 'ginger', 'grapefruits',
-    'grapes', 'green beans', 'green onions', 'sweet peas', 'guava',
-    'honeydew melons', 'jicama', 'kale', 'kiwi', 'kohlrabi', 'kumquats',
-    'leeks', 'lemons', 'lettuce', 'limes', 'lychee', 'mangoes', 'mushrooms',
-    'nectarines', 'okra', 'onions', 'oranges', 'papayas', 'parsley',
-    'parsnips', 'passionfruit', 'peaches', 'pears', 'persimmons',
-    'pineapples', 'plantains', 'plums', 'pomegranates', 'potatoes',
-    'pumpkins', 'radicchio', 'radishes', 'raspberries', 'rhubarb',
-    'rutabagas', 'shallots', 'snow peas', 'spinach', 'starfruit',
-    'strawberries', 'sugar snap peas', 'sweet potatoes', 'swiss chard',
-    'tangerines', 'tomatoes', 'turnips', 'watermelons', 'wax beans',
-    'winter squash', 'yams', 'yellow squash', 'zucchini'
+    'brussels sprouts', 'butternut squash', 'cabbage', 'cantaloupe', 'carrots',
+    'cauliflower', 'celery', 'cherries', 'chili peppers', 'clementines',
+    'coconuts', 'collard greens', 'coriander', 'corn', 'cranberries',
+    'cucumbers', 'currants', 'dandelion greens', 'dates', 'dragonfruit',
+    'edamame', 'eggplant', 'endive', 'fennel', 'fiddleheads', 'figs', 'garlic',
+    'ginger', 'grapefruits', 'grapes', 'green beans', 'green onions', 'guava',
+    'honeydew melons', 'hubbard squash', 'iceberg lettuce', 'jicama', 'kale',
+    'kiwi', 'kohlrabi', 'leeks', 'lemons', 'limes', 'mangoes', 'mushrooms',
+    'nectarines', 'okra', 'oranges', 'papayas', 'parsley', 'parsnips',
+    'passionfruit', 'peaches', 'pears', 'peas', 'persimmons', 'pineapples',
+    'plantains', 'plums', 'pomegranates', 'potatoes', 'pumpkins', 'radicchio',
+    'radishes', 'raspberries', 'red onions', 'rhubarb', 'romaine lettuce',
+    'rutabagas', 'shallots', 'snow peas', 'spaghetti squash', 'spinach',
+    'starfruit', 'strawberries', 'sugar snap peas', 'sweet potatoes',
+    'swiss chard', 'tomatoes', 'turnips', 'watermelons', 'wax beans',
+    'yellow onions', 'yellow squash', 'zucchini'
 ]
 
 def search_knowledge_graph(query):

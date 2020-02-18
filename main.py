@@ -9,10 +9,10 @@ app = Flask(__name__, template_folder='templates')
 def index():
     return render_template('index.html')
 
-@app.route('/result', methods=['POST'])
-def result():
+@app.route('/recommend', methods=['POST'])
+def recommend():
     args = request.form
-    return render_template('result.html')
+    return render_template('recommend.html')
 
 @app.route('/survey')
 def survey():

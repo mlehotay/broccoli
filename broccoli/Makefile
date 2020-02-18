@@ -4,7 +4,7 @@ run:
 	docker run -d --name appcontainer -p 80:80 appimage
 stop:
 	docker stop appcontainer
-clean:
+cleanup:
 	docker rmi -f appimage &&\
 	docker rm appcontainer
 localf:

@@ -1,13 +1,27 @@
 mount:
 	sshfs broccoli.floatingeye.net:/home/mlehotay/broccoli broccoli
+
 umount:
 	sudo umount broccoli
-upload:
-	cp main.py broccoli/app/main.py
+
+survey:
+	python data/survey.py
+
+upload: survey
+	rm -rf broccoli/app/
+
+	mkdir broccoli/app
+	cp main.py broccoli/app/
+
+	mkdir broccoli/app/static
+	mkdir broccoli/app/static/images
+	cp -r images/*.jpg broccoli/app/static/images/
+
+	mkdir broccoli/app/templates
 	cp templates/index.html broccoli/app/templates/
-	cp templates/result.html broccoli/app/templates/
+	cp templates/recommend.html broccoli/app/templates/
 	cp templates/survey.html broccoli/app/templates/
 	cp templates/thankyou.html broccoli/app/templates/
-	cp -r images/ broccoli/app/static/
+
 make login:
 	ssh broccoli.floatingeye.net

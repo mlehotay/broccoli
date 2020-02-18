@@ -2,6 +2,10 @@ from flask import Flask, render_template, request
 import pandas as pd
 import pickle
 
+#from flask import request
+#request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+
+
 app = Flask(__name__, template_folder='templates')
 #pipe = pickle.load(open('model/pipe.pkl', 'rb'))
 

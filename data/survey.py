@@ -7,12 +7,12 @@ TOP = '''<!DOCTYPE html>
     </head>
     <body>
         <form action = "/thankyou" method="POST">
-            <label for="name">Your name (optional):</label>
-            <input type="text" id="name" value="">
             <table border="1">
 '''
 INDENT = "            "
 BOTTOM = '''            </table>
+            <p><label for="name">Your name (optional):</label>
+            <input type="text" id="name" value=""></p>
             <p><input type ='submit' value='Submit'/></p>
         </form>
     </body>
@@ -28,7 +28,7 @@ if __name__ == '__main__':
     i=1
     for food in foods:
         slug = food.replace(' ', '')
-        filename = f'images/{slug}.jpg'
+        filename = f'static/images/{slug}.jpg'
         f.write(f'{INDENT}<tr><td>{i}</td><td>{food}</td><td><img src="{filename}" alt="picture of {food}"></td>\n')
         f.write(f'{INDENT}    <td><input type="radio" id="{slug}-like" name="{slug}" value="1"><label for="{slug}-like">like</label><br>\n')
         f.write(f'{INDENT}    <input type="radio" id="{slug}-neutral" name="{slug}" value="0" checked><label for="{slug}-neutral">neutral</label><br>\n')

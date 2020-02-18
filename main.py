@@ -23,7 +23,7 @@ def thankyou():
     args = request.form
     ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
     # save data
-    return render_template('thankyou.html')
+    return render_template('thankyou.html', address=ip, data=args)
 
 if __name__ == '__main__':
     app.run()

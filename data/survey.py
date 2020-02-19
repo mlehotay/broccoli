@@ -3,7 +3,7 @@ import pandas as pd
 TOP = '''<!DOCTYPE html>
 <html>
     <head>
-        <title>Broccoli Questionnaire</title>
+        <title>Broccoli Recommender</title>
     </head>
     <body>
         <h2>Food Preferences Questionnaire</h2>

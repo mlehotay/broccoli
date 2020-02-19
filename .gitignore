@@ -1,2 +1,4 @@
 broccoli/app/
 broccoli/userdata/
+data/broccoli.db
+templates/survey.html

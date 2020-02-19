@@ -25,6 +25,7 @@ upload: survey
 
 	mkdir broccoli/app/data
 	mkdir broccoli/app/data/userdata
+	cp data/db.py broccoli/app/data/
 
 make login:
 	ssh broccoli.floatingeye.net

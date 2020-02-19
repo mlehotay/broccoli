@@ -23,5 +23,8 @@ upload: survey
 	cp templates/survey.html broccoli/app/templates/
 	cp templates/thankyou.html broccoli/app/templates/
 
+	mkdir broccoli/app/data
+	mkdir broccoli/app/data/userdata
+
 make login:
 	ssh broccoli.floatingeye.net

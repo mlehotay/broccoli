@@ -12,7 +12,7 @@ TOP = '''<!DOCTYPE html>
 INDENT = "            "
 BOTTOM = '''            </table>
             <p><label for="name">Your name (optional):</label>
-            <input type="text" id="name" value=""></p>
+            <input type="text" id="name" name="name"></p>
             <p><input type ='submit' value='Submit'/></p>
         </form>
     </body>

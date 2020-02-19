@@ -1,18 +1,22 @@
 from datetime import datetime
+import json
 import sqlite3
 import uuid
 
 import pandas as pd
 
 def save_userdata(ip, args):
-    return save_text(ip, args)
+    return save_json(ip, args)
 
-def save_text(ip, args):
-    with open(f'data/userdata/{uuid.uuid4().hex}.txt', 'w') as f:
-        f.write(f'{datetime.now()}\n')
-        f.write(f'{ip}\n')
-        f.write(f'{args}\n')
-        return True
+def save_json(ip, args):
+    with open(f'data/userdata/{uuid.uuid4().hex}.json', 'w') as outfile:
+        data = {
+            'date': datetime.now().__str__(),
+            'ip': ip,
+            'prefs': args
+        }
+        json.dump(data, outfile)
+    return True
 
 def save_sql(ip, args):
     con = sqlite3.connect("data/broccoli.db")

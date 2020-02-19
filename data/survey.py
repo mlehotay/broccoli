@@ -6,6 +6,12 @@ TOP = '''<!DOCTYPE html>
         <title>Broccoli Questionnaire</title>
     </head>
     <body>
+        <h2>Food Preferences Questionnaire</h2>
+
+        <p>Please indicate your preferences for each of the 100 foods in the
+            list below and press the <code>submit</code> button at the bottom
+            of the page.</p>
+
         <form action = "/thankyou" method="POST">
             <table border="1">
 '''

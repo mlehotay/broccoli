@@ -1,5 +1,7 @@
 from datetime import datetime
+import json
 import sqlite3
+import uuid
 
 import pandas as pd
 
@@ -26,14 +28,32 @@ class FoodPrefs:
             pass # table already exists
         return con
 
+    def save_json(ip, args):
+        with open(f'data/userdata/{uuid.uuid4().hex}.json', 'w') as outfile:
+            data = {
+                'date': datetime.now().__str__(),
+                'ip': ip,
+                'prefs': args
+            }
+            json.dump(data, outfile)
+        return True
+
 ###############################################################################
 ip = 'ml-test-01'
 prefs = {'peas':0, 'corn':1}
 fp = FoodPrefs(ip, prefs)
 #con = fp._create_table()
 fp.save()
+    #pandas.read_sql(sql, con, parse_dates=None, columns=None, chunksize=None)[source])
 
+    df.to_sql('foodpfrefs', con, if_exists='append')
 
 con = sqlite3.connect('data/broccoli.db')
 df = pd.read_sql('select * from foodprefs', con)
 df = df.set_axis(axis=1)
+    #select lower(quote(uid)) from foodprefs
+    con = sqlite3.connect("data/broccoli.db")
+    cur = con.cursor()
+    #cur.execute(sql)
+    #con.commit()
+    con.close()

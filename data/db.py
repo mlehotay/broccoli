@@ -8,8 +8,8 @@ import pandas as pd
 
 class FoodPrefs:
     def __init__(self, ip, prefs):
-        self.date = datetime.now(),
-        self.ip = ip,
+        self.date = datetime.now().strftime('%c')
+        self.ip = ip
         self.prefs = prefs
 
     def save(self):
@@ -33,13 +33,17 @@ class FoodPrefs:
         return con
 
     def _save_json(self): # redundant backup just in case
-        status = None
         with open(f'data/json/{uuid.uuid4().hex}.json', 'w') as outfile:
-            status = os.path.dirname(os.path.realpath(__file__))
             data = {
                 'date': self.date.__str__(),
                 'ip': self.ip,
                 'prefs': self.prefs
             }
             json.dump(data, outfile)
-        return status
+
+###############################################################################
+# sandbox
+#f = open('broccoli/json/1561d757e4f24efc93332d2b12ea2ee7.json')
+#p = json.load(f)
+#f.close()
+#fp = FoodPrefs(p['ip'], p['prefs'])

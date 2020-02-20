@@ -13,14 +13,13 @@ class FoodPrefs:
         self.prefs = prefs
 
     def save(self):
-        s = self._save_json()
-        #df = pd.DataFrame.from_dict(self.prefs, orient='index').T
-        #df['date'] = self.date
-        #df['ip'] = self.ip
-        #con = self._get_connection()
+        self._save_json()
+        df = pd.DataFrame.from_dict(self.prefs, orient='index').T
+        df['date'] = self.date
+        df['ip'] = self.ip
+        con = self._get_connection()
         #df.to_sql('foodprefs', con, if_exists='append')
-        #con.close()
-        return s
+        con.close()
 
     def _get_connection(self):
         con = sqlite3.connect('data/broccoli.db')
@@ -35,7 +34,7 @@ class FoodPrefs:
     def _save_json(self): # redundant backup just in case
         with open(f'data/json/{uuid.uuid4().hex}.json', 'w') as outfile:
             data = {
-                'date': self.date.__str__(),
+                'date': self.date,
                 'ip': self.ip,
                 'prefs': self.prefs
             }
@@ -43,7 +42,17 @@ class FoodPrefs:
 
 ###############################################################################
 # sandbox
-#f = open('broccoli/json/1561d757e4f24efc93332d2b12ea2ee7.json')
-#p = json.load(f)
-#f.close()
-#fp = FoodPrefs(p['ip'], p['prefs'])
+'''
+f = open('data/example.json')
+p = json.load(f)
+f.close()
+fp = FoodPrefs(p['ip'], p['prefs'])
+#####
+fp.save()
+df = pd.DataFrame.from_dict(fp.prefs, orient='index').T
+df['date'] = fp.date
+df['ip'] = fp.ip
+con = fp._get_connection()
+df.to_sql('foodprefs', con, if_exists='replace')
+con.close()
+'''

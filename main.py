@@ -20,8 +20,8 @@ def survey():
 def thankyou():
     args = request.form
     ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
-    db_status = FoodPrefs(ip, args).save()
-    return render_template('thankyou.html', status=db_status)
+    FoodPrefs(ip, args).save()
+    return render_template('thankyou.html')
 
 if __name__ == '__main__':
     app.run()

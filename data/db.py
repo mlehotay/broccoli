@@ -1,5 +1,6 @@
 from datetime import datetime
 import json
+import os
 import sqlite3
 import uuid
 
@@ -12,13 +13,14 @@ class FoodPrefs:
         self.prefs = prefs
 
     def save(self):
-        self._save_json()
-        df = pd.DataFrame.from_dict(self.prefs, orient='index').T
-        df['date'] = self.date
-        df['ip'] = self.ip
-        con = self._get_connection()
-        df.to_sql('foodprefs', con, if_exists='append')
-        con.close()
+        s = self._save_json()
+        #df = pd.DataFrame.from_dict(self.prefs, orient='index').T
+        #df['date'] = self.date
+        #df['ip'] = self.ip
+        #con = self._get_connection()
+        #df.to_sql('foodprefs', con, if_exists='append')
+        #con.close()
+        return s
 
     def _get_connection(self):
         con = sqlite3.connect('data/broccoli.db')
@@ -31,11 +33,13 @@ class FoodPrefs:
         return con
 
     def _save_json(self): # redundant backup just in case
+        status = None
         with open(f'data/json/{uuid.uuid4().hex}.json', 'w') as outfile:
+            status = os.path.dirname(os.path.realpath(__file__))
             data = {
                 'date': self.date.__str__(),
                 'ip': self.ip,
-                'prefs': self.args
+                'prefs': self.prefs
             }
             json.dump(data, outfile)
-        return True
+        return status

@@ -29,7 +29,7 @@ class FoodPrefs:
         return con
 
     def save_json(ip, args):
-        with open(f'data/userdata/{uuid.uuid4().hex}.json', 'w') as outfile:
+        with open(f'data/json/{uuid.uuid4().hex}.json', 'w') as outfile:
             data = {
                 'date': datetime.now().__str__(),
                 'ip': ip,

@@ -17,4 +17,4 @@ locald:
 	docker run -d --name appcontainer -p 80:80 -v $(pwd)/app:/app -e FLASK_APP=main.py -e FLASK_DEBUG=1 appimage flask run --host=0.0.0.0 --port=80
 
 data:
-	docker cp appcontainer:/app/data/userdata/ .
+	docker cp appcontainer:/app/data/json/ .

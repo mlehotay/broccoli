@@ -1,4 +1,4 @@
 broccoli/app/
-broccoli/userdata/
+broccoli/json/
 data/broccoli.db
 templates/survey.html

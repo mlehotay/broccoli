@@ -24,7 +24,7 @@ upload: survey
 	cp templates/thankyou.html broccoli/app/templates/
 
 	mkdir broccoli/app/data
-	mkdir broccoli/app/data/userdata
+	mkdir broccoli/app/data/json
 	cp data/db.py broccoli/app/data/
 
 make login:

@@ -24,8 +24,8 @@ upload: survey
 	cp templates/thankyou.html broccoli/app/templates/
 
 	mkdir broccoli/app/data
-	mkdir broccoli/app/data/userdata
 	cp data/db.py broccoli/app/data/
+	cp data/foods.csv broccoli/app/static/
 
 make login:
 	ssh broccoli.floatingeye.net

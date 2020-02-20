@@ -4,7 +4,7 @@ run:
 	docker run -d --name appcontainer -p 80:80 appimage
 stop:
 	docker stop appcontainer
-cleanup: data
+cleanup:
 	docker rmi -f appimage &&\
 	docker rm appcontainer
 localf:
@@ -15,6 +15,3 @@ localf:
 	flask run
 locald:
 	docker run -d --name appcontainer -p 80:80 -v $(pwd)/app:/app -e FLASK_APP=main.py -e FLASK_DEBUG=1 appimage flask run --host=0.0.0.0 --port=80
-
-data:
-	docker cp appcontainer:/app/data/userdata/ .

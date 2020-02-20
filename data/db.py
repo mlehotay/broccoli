@@ -17,9 +17,9 @@ class FoodPrefs:
         df = pd.DataFrame.from_dict(self.prefs, orient='index').T
         df['date'] = self.date
         df['ip'] = self.ip
-        con = self._get_connection()
+        #con = self._get_connection()
         #df.to_sql('foodprefs', con, if_exists='append')
-        con.close()
+        #con.close()
 
     def _get_connection(self):
         con = sqlite3.connect('data/broccoli.db')

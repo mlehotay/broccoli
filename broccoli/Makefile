@@ -15,6 +15,7 @@ localf:
 	flask run
 locald:
 	docker run -d --name appcontainer -p 80:80 -v $(pwd)/app:/app -e FLASK_APP=main.py -e FLASK_DEBUG=1 appimage flask run --host=0.0.0.0 --port=80
-
 data:
-	docker cp appcontainer:/app/data/json/ .
+	-mv broccoli.db broccoli.`cat /dev/urandom | tr -cd 'a-f0-9' | head -c 8`.db
+	-docker cp appcontainer:/app/data/broccoli.db .
+	-docker cp appcontainer:/app/data/json/ .

@@ -12,15 +12,17 @@ class FoodPrefs:
         self.prefs = prefs
 
     def save(self):
+        self._save_json()
         df = pd.DataFrame.from_dict(self.prefs, orient='index').T
         df['date'] = self.date
         df['ip'] = self.ip
-        con = self._create_table()
+        con = self._get_connection()
         df.to_sql('foodprefs', con, if_exists='append')
         con.close()
 
-    def _create_table(self):
+    def _get_connection(self):
         con = sqlite3.connect('data/broccoli.db')
+        #to do: check if table exists before loading csv
         df = pd.read_csv('data/foods.csv')
         try:
             df.T.to_sql('foodprefs', con)
@@ -28,32 +30,12 @@ class FoodPrefs:
             pass # table already exists
         return con
 
-    def save_json(ip, args):
+    def _save_json(self): # redundant backup just in case
         with open(f'data/json/{uuid.uuid4().hex}.json', 'w') as outfile:
             data = {
-                'date': datetime.now().__str__(),
-                'ip': ip,
-                'prefs': args
+                'date': self.date.__str__(),
+                'ip': self.ip,
+                'prefs': self.args
             }
             json.dump(data, outfile)
         return True
-
-###############################################################################
-ip = 'ml-test-01'
-prefs = {'peas':0, 'corn':1}
-fp = FoodPrefs(ip, prefs)
-#con = fp._create_table()
-fp.save()
-    #pandas.read_sql(sql, con, parse_dates=None, columns=None, chunksize=None)[source])
-
-    df.to_sql('foodpfrefs', con, if_exists='append')
-
-con = sqlite3.connect('data/broccoli.db')
-df = pd.read_sql('select * from foodprefs', con)
-df = df.set_axis(axis=1)
-    #select lower(quote(uid)) from foodprefs
-    con = sqlite3.connect("data/broccoli.db")
-    cur = con.cursor()
-    #cur.execute(sql)
-    #con.commit()
-    con.close()

@@ -31,7 +31,6 @@ class FoodPrefs:
             json.dump(data, outfile)
 
 def get_connection():
-    print('start')
     con = sqlite3.connect('data/broccoli.db')
     #to do: check if table exists before loading csv
     df = get_seed_data()
@@ -39,7 +38,6 @@ def get_connection():
         df.to_sql('foodprefs', con)
     except ValueError:
         pass # table already exists
-    print('returning connection')
     return con
 
 def get_seed_data():

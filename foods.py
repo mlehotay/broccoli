@@ -25,6 +25,9 @@ def food_grid():
         i += 1
     return s
 
+def recommend_foods(args):
+    return '<tr><td>soon...</td></tr>'
+
 def food_survey():
     s = ''
     df = pd.read_csv('data/foods.csv')

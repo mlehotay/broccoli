@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from data.db import FoodPrefs
-from foods import food_grid, food_survey
+from foods import food_grid, food_survey, recommend_foods
 
 app = Flask(__name__, template_folder='templates')
 
@@ -14,7 +14,8 @@ def recommend():
     args = request.form
     ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
     FoodPrefs(ip, args).save()
-    return render_template('recommend.html')
+    recs = recommend_foods(args)
+    return render_template('recommend.html', recommendations=recs)
 
 @app.route('/survey')
 def survey():

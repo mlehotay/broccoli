@@ -11,12 +11,18 @@
         <title>Broccoli Recommender</title>
     </head>
     <body>
-        <p>This is the recommendations page</p>
+        <center>
+            <h2>Broccoli Recommender</h2>
 
-        <br>
+            <p>Here are your personalized recommendations</p>
 
-        <p><a href='/'>Try it again!</a></p>
-        <p>You can help improve these recommendations by answering the
-            <a href='survey'>food preferences questionnaire</a>.</p>
+                <table border='1'>
+                    {{recommendations|safe}}
+                </table>
+
+            <p><a href='/'>Try it again!</a></p>
+            <p>You can help improve these recommendations by answering the
+                <a href='survey'>food preferences questionnaire</a>.</p>
+        </center>
     </body>
 </html>

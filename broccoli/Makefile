@@ -2,6 +2,7 @@ build:
 	docker build -t appimage .
 run:
 	docker run -d --name appcontainer -p 80:80 appimage
+	docker cp backup/broccoli.db appcontainer:/app/data/
 stop:
 	docker stop appcontainer
 cleanup: backup

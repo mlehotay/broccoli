@@ -2,5 +2,6 @@ backup/
 broccoli/app/
 broccoli/backup/
 broccoli/json/
+broccoli/broccoli*.db
 data/broccoli.db
 templates/survey.html

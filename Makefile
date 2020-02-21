@@ -4,10 +4,7 @@ mount:
 umount:
 	sudo umount broccoli
 
-survey:
-	python data/survey.py
-
-upload: survey
+upload:
 	rm -rf broccoli/app/
 
 	mkdir broccoli/app

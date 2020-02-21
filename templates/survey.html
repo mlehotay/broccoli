@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158784371-2"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'UA-158784371-2');
+        </script>
+        <title>Broccoli Recommender</title>
+    </head>
+    <body>
+        <h2>Food Preferences Questionnaire</h2>
+
+        <p>Please indicate your preferences for each of the 100 foods in the
+        list below and press the submit button at the bottom of the page. If
+        you aren't sure about an item, leave it set to neutral.</p>
+
+        <form action = "/thankyou" method="POST">
+            <table border='1'>
+                {{table_rows|safe}}
+            </table>
+            <p><label for="name">Your name (optional):</label>
+            <input type="text" id="name" name="name"></p>
+            <p><input type ='submit' value='Submit'/></p>
+        </form>
+    </body>
+</html>

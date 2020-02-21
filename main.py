@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from data.db import FoodPrefs
+from foods import food_survey
 
 app = Flask(__name__, template_folder='templates')
 
@@ -14,7 +15,8 @@ def recommend():
 
 @app.route('/survey')
 def survey():
-    return render_template('survey.html')
+    survey = food_survey()
+    return render_template('survey.html', table_rows=survey)
 
 @app.route('/thankyou', methods=['POST'])
 def thankyou():

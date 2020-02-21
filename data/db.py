@@ -45,7 +45,7 @@ def get_connection():
 def get_seed_data():
     df = pd.read_csv('data/foods.csv').T
     df.columns = [food.replace(' ', '') for food in df.iloc[0]]
-    df = df.drop('name', axis=0)
+    df = df.drop('Food', axis=0)
     df = df.reset_index()
     df['name'] = df['index']
     df = df.drop('index', axis=1)

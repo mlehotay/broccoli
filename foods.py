@@ -26,7 +26,18 @@ def food_grid():
     return s
 
 def recommend_foods(args):
-    return '<tr><td>soon...</td></tr>'
+    s = '\n'
+    df = pd.read_csv('data/foods.csv')
+    foods = random.sample(df['Food'].to_list(), k=5)
+    for food in foods:
+        slug = food.replace(' ', '')
+        filename = f'static/images/{slug}.jpg'
+        percent = random.randint(0,100)
+        s += '<tr><td align="center">'
+        s += f'{food} ({percent}%)<br>'
+        s += f'<img src="{filename}" height="75%" width="75%" alt="picture of {food}">'
+        s += '</td></tr>\n'
+    return s
 
 def food_survey():
     s = ''

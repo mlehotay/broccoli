@@ -1,5 +1,8 @@
 import pandas as pd
 
+def food_grid():
+    return '<tr><td>16 foods go here</td></tr>'
+
 def food_survey():
     s = ''
     df = pd.read_csv('data/foods.csv')

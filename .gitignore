@@ -3,4 +3,5 @@ broccoli/app/
 broccoli/backup/
 broccoli/json/
 broccoli/broccoli*.db
+data/json/
 data/broccoli.db

@@ -11,9 +11,22 @@
         <title>Broccoli Recommender</title>
     </head>
     <body>
+    <center>
+        <h2>Broccoli Recommender</h2>
+
+        <p>Not sure what fruits and vegetables to eat? Click <i>like</i> or
+        <i>dislike</i> on the foods below to receive recommendations based on
+        your preferences!</p>
+
         <form action = "/recommend" method="POST">
-            <p>This is the input page</p>
+            <table border='1'>
+                {{table_rows|safe}}
+            </table>
             <p><input type='submit' value='Submit'/></p>
         </form>
+
+        <p>Click <b>submit</b> to see your recommendations!</p>
+
+    </center>
     </body>
 </html>

@@ -17,26 +17,9 @@ class FoodPrefs:
         df = pd.DataFrame.from_dict(self.prefs, orient='index').T
         df['date'] = self.date
         df['ip'] = self.ip
-        con = self._get_connection()
-        #df.to_sql('foodprefs', con, if_exists='append')
-        df.to_sql('foodprefs', con, if_exists='replace')
+        con = get_connection()
+        df.to_sql('foodprefs', con, if_exists='append')
         con.close()
-
-    def _get_connection(self):
-        print('start')
-        con = sqlite3.connect('data/broccoli.db')
-        #to do: check if table exists before loading csv
-        df = pd.read_csv('data/foods.csv').T
-        df.columns = df.iloc[0]
-        df = df.drop('name', axis=0)
-        df['date'] = None
-        df['ip'] = None
-        try:
-            df.to_sql('foodprefs', con)
-        except ValueError:
-            pass # table already exists
-        print('returning connection')
-        return con
 
     def _save_json(self): # redundant backup just in case
         with open(f'data/json/{uuid.uuid4().hex}.json', 'w') as outfile:
@@ -47,24 +30,25 @@ class FoodPrefs:
             }
             json.dump(data, outfile)
 
-###############################################################################
-# sandbox
-'''
-f = open('data/example.json')
-p = json.load(f)
-f.close()
-fp = FoodPrefs(p['ip'], p['prefs'])
-fp.save()
-#####
-df = pd.read_csv('data/foods.csv', index_col=0).T
-df.columns = [food.replace(' ', '') for food in df.columns]
-#####
-df = pd.DataFrame.from_dict(fp.prefs, orient='index').T
-###############################################################################
-df = pd.read_csv('data/foods.csv').T
-df.columns = df.iloc[0]
-df = df.drop('name', axis=0)
-df['date'] = None
-df['ip'] = None
-###############################################################################
-'''
+def get_connection():
+    print('start')
+    con = sqlite3.connect('data/broccoli.db')
+    #to do: check if table exists before loading csv
+    df = get_seed_data()
+    try:
+        df.to_sql('foodprefs', con)
+    except ValueError:
+        pass # table already exists
+    print('returning connection')
+    return con
+
+def get_seed_data():
+    df = pd.read_csv('data/foods.csv').T
+    df.columns = [food.replace(' ', '') for food in df.iloc[0]]
+    df = df.drop('name', axis=0)
+    df = df.reset_index()
+    df['name'] = df['index']
+    df = df.drop('index', axis=1)
+    df['date'] = None
+    df['ip'] = None
+    return df

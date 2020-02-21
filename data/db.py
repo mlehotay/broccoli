@@ -17,18 +17,25 @@ class FoodPrefs:
         df = pd.DataFrame.from_dict(self.prefs, orient='index').T
         df['date'] = self.date
         df['ip'] = self.ip
-        #con = self._get_connection()
+        con = self._get_connection()
         #df.to_sql('foodprefs', con, if_exists='append')
-        #con.close()
+        df.to_sql('foodprefs', con, if_exists='replace')
+        con.close()
 
     def _get_connection(self):
+        print('start')
         con = sqlite3.connect('data/broccoli.db')
         #to do: check if table exists before loading csv
-        df = pd.read_csv('data/foods.csv')
+        df = pd.read_csv('data/foods.csv').T
+        df.columns = df.iloc[0]
+        df = df.drop('name', axis=0)
+        df['date'] = None
+        df['ip'] = None
         try:
-            df.T.to_sql('foodprefs', con)
+            df.to_sql('foodprefs', con)
         except ValueError:
             pass # table already exists
+        print('returning connection')
         return con
 
     def _save_json(self): # redundant backup just in case
@@ -47,12 +54,17 @@ f = open('data/example.json')
 p = json.load(f)
 f.close()
 fp = FoodPrefs(p['ip'], p['prefs'])
-#####
 fp.save()
+#####
+df = pd.read_csv('data/foods.csv', index_col=0).T
+df.columns = [food.replace(' ', '') for food in df.columns]
+#####
 df = pd.DataFrame.from_dict(fp.prefs, orient='index').T
-df['date'] = fp.date
-df['ip'] = fp.ip
-con = fp._get_connection()
-df.to_sql('foodprefs', con, if_exists='replace')
-con.close()
+###############################################################################
+df = pd.read_csv('data/foods.csv').T
+df.columns = df.iloc[0]
+df = df.drop('name', axis=0)
+df['date'] = None
+df['ip'] = None
+###############################################################################
 '''

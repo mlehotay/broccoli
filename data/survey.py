@@ -34,7 +34,7 @@ BOTTOM = '''            </table>
 
 if __name__ == '__main__':
     df = pd.read_csv('data/foods.csv')
-    foods = df['Food'].to_list()
+    foods = df['name'].to_list()
     f = open("templates/survey.html", "w")
     f.write(TOP)
 

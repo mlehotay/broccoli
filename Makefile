@@ -8,6 +8,7 @@ upload:
 	rm -rf broccoli/app/
 
 	mkdir broccoli/app
+	cp foods.py broccoli/app/
 	cp main.py broccoli/app/
 
 	mkdir broccoli/app/static

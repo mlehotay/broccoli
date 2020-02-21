@@ -28,5 +28,8 @@ upload: survey
 	cp data/db.py broccoli/app/data/
 	cp data/foods.csv broccoli/app/data/
 
+download:
+	cp -pr broccoli/backup/ .
+
 make login:
 	ssh broccoli.floatingeye.net

@@ -50,3 +50,10 @@ def get_seed_data():
     df['date'] = None
     df['ip'] = None
     return df
+
+def export_csv(): # utility function, not used by web app
+    con = get_connection()
+    df = pd.read_sql('select * from foodprefs', con, index_col='name')
+    con.close()
+    df = df.drop(['date', 'ip', 'index'], axis=1)
+    df.T.to_csv('data/foods.csv')

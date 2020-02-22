@@ -1,101 +1,101 @@
-Food,Christine,Michael,Celine
-alfalfa sprouts,0,1,1
-apples,1,1,1
-apricots,0,1,1
-artichokes,1,0,0
-arugula,1,1,1
-asparagus,1,1,1
-avocados,1,1,1
-bananas,1,1,1
-bean sprouts,0,1,1
-beets,1,1,1
-bell peppers,1,1,1
-blackberries,-1,1,0
-blueberries,1,1,1
-bok choy,1,1,0
-broccoli,1,1,1
-brussels sprouts,1,1,1
-butternut squash,1,1,1
-cabbage,1,1,1
-cantaloupe,0,1,1
-carrots,1,1,1
-cauliflower,1,1,0
-celery,1,1,0
-cherries,0,0,1
-chili peppers,0,1,0
-clementines,1,1,1
-coconuts,0,1,0
-collard greens,0,1,0
-coriander,1,1,1
-corn,0,0,1
-cranberries,1,1,0
-cucumbers,1,0,0
-currants,0,0,0
-dandelion greens,0,1,0
-dates,-1,-1,1
-dragonfruit,0,0,0
-edamame,0,1,1
-eggplant,1,1,1
-endive,0,0,0
-fennel,1,1,1
-fiddleheads,0,1,1
-figs,0,-1,0
-garlic,1,1,1
-ginger,1,1,1
-grapefruit,0,1,1
-grapes,0,0,1
-green beans,1,1,0
-green onions,1,1,1
-guava,-1,-1,0
-honeydew melon,0,0,-1
-hubbard squash,0,1,1
-iceberg lettuce,0,0,0
-jicama,0,1,1
-kale,1,1,1
-kiwi,1,1,1
-kohlrabi,0,1,1
-leeks,1,1,0
-lemons,1,1,1
-limes,1,1,1
-mangos,1,1,1
-mushrooms,1,1,1
-nectarines,0,0,0
-okra,1,1,0
-oranges,1,1,1
-papayas,-1,0,-1
-parsley,1,1,1
-parsnips,1,0,0
-passionfruit,-1,-1,-1
-peaches,1,1,1
-pears,1,0,1
-peas,1,1,1
-persimmons,0,-1,-1
-pineapples,1,1,1
-plantains,0,1,0
-plums,0,1,0
-pomegranates,1,1,0
-potatoes,1,1,0
-pumpkins,0,1,1
-radicchio,0,0,0
-radishes,0,1,0
-raspberries,1,1,1
-red onions,1,1,1
-rhubarb,0,1,1
-romaine lettuce,1,1,0
-rutabagas,0,1,0
-shallots,1,1,0
-snow peas,1,1,1
-spaghetti squash,-1,0,-1
-spinach,1,1,1
-starfruit,0,0,0
-strawberries,1,1,0
-sugar snap peas,1,1,1
-sweet potatoes,1,1,1
-swiss chard,0,1,0
-tomatoes,1,1,1
-turnips,1,1,0
-watermelon,1,0,0
-wax beans,0,1,0
-yellow onions,1,1,0
-yellow squash,1,1,1
-zucchini,1,1,1
+Food,Christine,Michael,Celine,,Brandon,Rittik Ghosh,Finnagin,Jeff Goldblum,
+alfalfa sprouts,0,1,1,1,0,0,1,-1,1
+apples,1,1,1,1,1,0,1,-1,1
+apricots,0,1,1,1,1,-1,1,1,1
+artichokes,1,0,0,1,-1,-1,-1,1,1
+arugula,1,1,1,1,0,1,1,1,-1
+asparagus,1,1,1,1,1,0,-1,1,1
+avocados,1,1,1,1,1,1,-1,1,1
+bananas,1,1,1,1,1,1,-1,1,1
+bean sprouts,0,1,1,1,0,0,-1,-1,1
+beets,1,1,1,1,-1,-1,-1,1,1
+bell peppers,1,1,1,1,1,0,-1,1,1
+blackberries,-1,1,0,1,1,-1,1,1,1
+blueberries,1,1,1,1,1,1,1,1,1
+bok choy,1,1,0,1,-1,1,-1,0,1
+broccoli,1,1,1,1,1,1,1,1,1
+brussels sprouts,1,1,1,1,0,1,-1,0,1
+butternut squash,1,1,1,1,-1,-1,1,0,1
+cabbage,1,1,1,1,1,-1,1,0,0
+cantaloupe,0,1,1,1,1,0,0,1,1
+carrots,1,1,1,1,1,1,0,0,0
+cauliflower,1,1,0,1,1,-1,-1,0,1
+celery,1,1,0,1,1,1,1,-1,0
+cherries,0,0,1,1,1,0,1,1,1
+chili peppers,0,1,0,1,-1,1,1,1,1
+clementines,1,1,1,1,1,0,1,1,1
+coconuts,0,1,0,1,1,-1,1,1,1
+collard greens,0,1,0,1,1,0,1,1,0
+coriander,1,1,1,1,0,0,-1,-1,1
+corn,0,0,1,1,-1,0,-1,1,0
+cranberries,1,1,0,0,1,-1,-1,1,1
+cucumbers,1,0,0,1,1,0,-1,1,1
+currants,0,0,0,1,0,-1,-1,-1,0
+dandelion greens,0,1,0,1,-1,-1,1,0,-1
+dates,-1,-1,1,1,-1,1,1,-1,1
+dragonfruit,0,0,0,1,0,0,0,0,1
+edamame,0,1,1,1,0,1,1,0,1
+eggplant,1,1,1,1,-1,1,0,0,1
+endive,0,0,0,1,-1,0,0,0,0
+fennel,1,1,1,1,0,0,-1,-1,0
+fiddleheads,0,1,1,0,0,0,0,0,0
+figs,0,-1,0,1,1,-1,1,0,1
+garlic,1,1,1,1,1,1,1,1,1
+ginger,1,1,1,1,1,1,0,1,1
+grapefruit,0,1,1,1,1,0,1,1,1
+grapes,0,0,1,1,1,1,1,1,1
+green beans,1,1,0,0,0,0,1,0,1
+green onions,1,1,1,1,-1,1,1,0,1
+guava,-1,-1,0,1,0,0,1,1,1
+honeydew melon,0,0,-1,1,1,-1,-1,1,1
+hubbard squash,0,1,1,0,-1,0,1,0,0
+iceberg lettuce,0,0,0,1,1,-1,0,1,0
+jicama,0,1,1,0,-1,0,0,0,1
+kale,1,1,1,1,1,0,1,1,-1
+kiwi,1,1,1,1,1,0,1,1,1
+kohlrabi,0,1,1,0,0,0,0,0,0
+leeks,1,1,0,1,0,0,1,1,1
+lemons,1,1,1,1,1,0,1,1,1
+limes,1,1,1,1,1,1,1,1,1
+mangos,1,1,1,1,1,1,1,1,1
+mushrooms,1,1,1,1,0,1,1,0,1
+nectarines,0,0,0,1,1,0,1,1,1
+okra,1,1,0,1,0,0,0,0,-1
+oranges,1,1,1,1,1,0,1,1,1
+papayas,-1,0,-1,1,-1,0,-1,0,1
+parsley,1,1,1,1,0,0,1,-1,1
+parsnips,1,0,0,0,-1,0,-1,-1,1
+passionfruit,-1,-1,-1,1,0,-1,1,0,1
+peaches,1,1,1,1,1,-1,1,1,1
+pears,1,0,1,1,1,-1,1,1,1
+peas,1,1,1,1,1,1,1,0,1
+persimmons,0,-1,-1,1,0,0,-1,0,1
+pineapples,1,1,1,1,1,1,1,0,1
+plantains,0,1,0,1,0,1,0,0,1
+plums,0,1,0,1,1,0,1,1,1
+pomegranates,1,1,0,1,1,0,1,0,1
+potatoes,1,1,0,1,0,1,1,1,1
+pumpkins,0,1,1,1,-1,0,1,0,1
+radicchio,0,0,0,1,-1,0,0,0,-1
+radishes,0,1,0,1,-1,1,1,0,0
+raspberries,1,1,1,1,1,-1,1,1,1
+red onions,1,1,1,0,-1,1,1,1,0
+rhubarb,0,1,1,1,0,0,0,0,-1
+romaine lettuce,1,1,0,1,1,-1,1,0,1
+rutabagas,0,1,0,0,0,0,0,-1,0
+shallots,1,1,0,1,0,0,1,1,0
+snow peas,1,1,1,1,1,1,1,1,1
+spaghetti squash,-1,0,-1,1,-1,-1,1,1,1
+spinach,1,1,1,1,1,1,1,1,1
+starfruit,0,0,0,1,0,0,0,0,1
+strawberries,1,1,0,1,1,1,1,1,1
+sugar snap peas,1,1,1,1,1,0,1,1,1
+sweet potatoes,1,1,1,1,1,1,1,1,1
+swiss chard,0,1,0,1,0,0,1,1,-1
+tomatoes,1,1,1,1,1,1,1,1,1
+turnips,1,1,0,1,-1,0,-1,-1,0
+watermelon,1,0,0,1,1,1,1,1,1
+wax beans,0,1,0,1,0,-1,1,0,1
+yellow onions,1,1,0,1,0,1,1,1,1
+yellow squash,1,1,1,1,-1,0,-1,0,1
+zucchini,1,1,1,1,-1,0,0,1,1

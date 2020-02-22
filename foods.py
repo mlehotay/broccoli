@@ -73,6 +73,7 @@ def get_recommendations(args, limit):
         df_neighbor = df_neighbor.drop(['name', 'ip', 'date'])
         likes = [f for f in df_neighbor.index if df_neighbor[f]==1]
         new_recs = [f for f in likes if f not in df_user.columns]
+        random.shuffle(new_recs)
         n = min(len(new_recs), limit-len(recs))
         recs += new_recs[0:n]
         if len(recs) == limit:

@@ -45,7 +45,7 @@ def food_grid():
 
 def recommend_foods(args):
     s = '\n'
-    foods = get_recommendations(args)
+    foods = get_recommendations(args, 5)
     for food in foods:
         slug = food.replace(' ', '')
         filename = f'static/images/{slug}.jpg'
@@ -55,7 +55,7 @@ def recommend_foods(args):
         s += '</td></tr>\n'
     return s
 
-def get_recommendations(args):
+def get_recommendations(args, limit):
     df_user = pd.DataFrame.from_dict(args, orient='index').T
 
     con = get_connection()
@@ -63,14 +63,18 @@ def get_recommendations(args):
     df_all = df_all.reset_index(drop=True)
     con.close()
 
+    recs = []
     neighbors = find_neighbors(df_user, df_all)
-########################################################
-    # for now, just return random foods
-    # delete this when the code above is working
-    df = pd.read_csv('data/foods.csv')
-    foods = random.sample(df['Food'].to_list(), k=5)
-    return foods
-#####################################################
+    for neighbor in neighbors:
+        df_neighbor = df_all.iloc[neighbor]
+        df_neighbor = df_neighbor.drop(['name', 'ip', 'date'])
+        likes = [f for f in df_neighbor.index if df_neighbor[f]==1]
+        new_recs = [f for f in likes if f not in df_user.columns]
+        n = min(len(new_recs), limit-len(recs))
+        recs += new_recs[0:n]
+        if len(recs) == limit:
+            break
+    return recs
 
 def find_neighbors(df_user, df_all):
     df_cropped = df_all.drop(['name', 'ip', 'date'], axis=1)
@@ -86,25 +90,3 @@ def find_neighbors(df_user, df_all):
     while(sim[neighbors[k]][0]>0):
         k += 1
     return neighbors[0:k]
-
-###############################################################################
-# sandbox
-#import json
-#f = open('data/foodgrid.json')
-#p = json.load(f)
-#f.close()
-#args = p['prefs']
-#df_user = pd.DataFrame.from_dict(args, orient='index').T.sort_index(axis=1)
-#con = get_connection()
-#df_all = pd.read_sql('select * from foodprefs', con, index_col='index')
-#con.close()
-#df_all = df_all.reset_index(drop=True)
-#neighbors = find_neighbors(df_user, df_all)
-
-
-## from model.py
-#sim.loc['slippery'].sort_values(ascending=False)[1:]
-#food = list(df.loc['white'][df.loc['white'] == 1].index)
-#food
-#tried = list(df.loc['slippery'][df.loc['slippery'] == 1].index)
-#[f for f in food if f not in tried]

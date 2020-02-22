@@ -46,13 +46,16 @@ def food_grid():
 def recommend_foods(args):
     s = '\n'
     foods = get_recommendations(args, 5)
-    for food in foods:
-        slug = food.replace(' ', '')
-        filename = f'static/images/{slug}.jpg'
-        s += '<tr><td align="center">'
-        s += f'{food}<br>'
-        s += f'<img src="{filename}" height="75%" width="75%" alt="picture of {food}">'
-        s += '</td></tr>\n'
+    if len(foods) == 0:
+        s = 'Sorry! There were no recommendations based on your input. ☹️'
+    else:
+        for food in foods:
+            slug = food.replace(' ', '')
+            filename = f'static/images/{slug}.jpg'
+            s += '<tr><td align="center">'
+            s += f'{food}<br>'
+            s += f'<img src="{filename}" height="75%" width="75%" alt="picture of {food}">'
+            s += '</td></tr>\n'
     return s
 
 def get_recommendations(args, limit):

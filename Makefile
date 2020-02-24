@@ -20,6 +20,7 @@ upload:
 	cp templates/recommend.html broccoli/app/templates/
 	cp templates/survey.html broccoli/app/templates/
 	cp templates/thankyou.html broccoli/app/templates/
+	cp templates/gtag.js broccoli/app/templates/
 
 	mkdir broccoli/app/data
 	mkdir broccoli/app/data/json
